@@ -34,9 +34,10 @@ silent() {
 
 dgpuon() {
 	# Tells the laptop firmware to enable the dgpu (Only Nvidia is supported here.)
-	sudo modprobe nvidia
 	echo 0 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+	sudo modprobe nvidia
 }
+
 
 dgpuoff() {
 	# Tells the laptop firmware to disable the dgpu (Only Nvidia is supported here)
