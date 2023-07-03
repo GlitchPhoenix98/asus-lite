@@ -33,13 +33,15 @@ silent() {
 }
 
 dgpuon() {
+	# Tells the laptop firmware to enable the dgpu (Only Nvidia is supported here.)
+	modprobe nvidia
 	echo 0 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
-	printf "\na reboot may be required to enable the dGPU.\n"
 }
 
 dgpuoff() {
+	# Tells the laptop firmware to disable the dgpu (Only Nvidia is supported here)
+	sudo modprobe -r nvidia
 	echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
-	printf "\na reboot may be required to disable the dGPU.\n"
 }
 
 case "$1" in
