@@ -8,9 +8,7 @@ usage() {
 	printf "  -t		Turbo mode\n"
 	printf "  -b		Balanced mode\n"
 	printf "  -s		Silent mode\n"
-	printf "  -e		Enable dGPU\n"
-	printf "  -d		Disable dGPU\n"
-	printf "\n-----------------------------\n\n"
+	printf "-----------------------------\n\n"
 }
 
 version() {
@@ -32,25 +30,12 @@ silent() {
 	echo 2 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
 }
 
-dgpuon() {
-	# Tells the laptop firmware to enable the dgpu (Only Nvidia is supported here.)
-	echo 0 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
-	sudo modprobe nvidia
-}
 
-
-dgpuoff() {
-	# Tells the laptop firmware to disable the dgpu (Only Nvidia is supported here)
-	sudo modprobe -r nvidia
-	echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
-}
 
 case "$1" in
 	-v) version;;
 	-s) silent;;
 	-b) balanced;;
 	-t) turbo;;
-	-e) dgpuon;;
-	-d) dgpuoff;;
 	 *) usage; exit 1;;
 esac

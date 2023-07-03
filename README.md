@@ -6,7 +6,6 @@
 
 ## Features
 - Fan control.
-- Easily power off your dGPU. (Only Nvidia supported)
 
 ## Submitting bug reports
 When submitting bug reports, please include dmesg output related to your issue.
