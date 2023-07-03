@@ -9,4 +9,4 @@
 - Easily power off your dGPU.
 
 ## Submitting bug reports
-When submitting bug reports, please include dsmeg output related to your issue.
+When submitting bug reports, please include dmesg output related to your issue.
