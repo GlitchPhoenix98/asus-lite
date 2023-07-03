@@ -7,8 +7,8 @@ usage() {
 	printf "  -v		Display version\n"
 	printf "  -t		Turbo mode\n"
 	printf "  -b		Balanced mode\n"
-	printf "  -s		Silent mode\n"
-	printf "-----------------------------\n\n"
+	printf "  -s		Silent mode"
+	printf "\n-----------------------------\n\n"
 }
 
 version() {
