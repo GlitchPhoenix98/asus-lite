@@ -1,0 +1,51 @@
+#!/bin/bash
+
+# Output used if there is no command line options selected.
+usage() {
+	printf "\n-----------------------------\n"
+	printf " Usage: asus-lite [OPTION]..\n"
+	printf "  -v		Display version\n"
+	printf "  -t		Turbo mode\n"
+	printf "  -b		Balanced mode\n"
+	printf "  -s		Silent mode\n"
+	printf "  -e		Enable dGPU\n"
+	printf "  -d		Disable dGPU\n"
+	printf "\n-----------------------------\n\n"
+}
+
+version() {
+	printf "\nasus-lite 0.0.1\n\n"
+}
+
+turbo() {
+	# Set the fans to 'turbo mode'
+	echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
+}
+
+balanced() {
+	# Set fans to balanced or 'performance' mode
+	echo 0 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
+}
+
+silent() {
+	# Sets the fans to silent, sometimes turning them off when nothing intense is happening on newer models
+	echo 2 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
+}
+
+dgpuon() {
+	echo 0 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
+}
+
+dgpuoff() {
+	echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
+}
+
+case "$1" in
+	-v) version;;
+	-s) silent;;
+	-b) balanced;;
+	-t) turbo;;
+	-e) dgpuon;;
+	-d) dgpuoff;;
+	 *) usage; exit 1;;
+esac
