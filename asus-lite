@@ -33,11 +33,13 @@ silent() {
 }
 
 dgpuon() {
-	echo 0 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_diable
+	echo 0 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+	printf "\na reboot may be required to enable the dGPU.\n"
 }
 
 dgpuoff() {
 	echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
+	printf "\na reboot may be required to disable the dGPU.\n"
 }
 
 case "$1" in
