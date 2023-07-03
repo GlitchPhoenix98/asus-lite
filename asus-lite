@@ -14,7 +14,7 @@ usage() {
 }
 
 version() {
-	printf "\nasus-lite 0.0.1\n\n"
+	printf "\nasus-lite 0.0.2\n\n"
 }
 
 turbo() {
@@ -33,11 +33,11 @@ silent() {
 }
 
 dgpuon() {
-	echo 0 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
+	echo 0 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_diable
 }
 
 dgpuoff() {
-	echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
+	echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/dgpu_disable
 }
 
 case "$1" in
