@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -e
 # Output used if there is no command line options selected.
 usage() {
 	printf "\n-----------------------------\n"
@@ -17,16 +17,19 @@ version() {
 
 turbo() {
 	# Set the fans to 'turbo mode'
+	echo performance | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor 
 	echo 1 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
 }
 
 balanced() {
 	# Set fans to balanced or 'performance' mode
+	echo schedutil | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor 
 	echo 0 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
 }
 
 silent() {
 	# Sets the fans to silent, sometimes turning them off when nothing intense is happening on newer models
+	echo powersave | sudo tee /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 	echo 2 | sudo tee /sys/devices/platform/asus-nb-wmi/throttle_thermal_policy
 }
 
